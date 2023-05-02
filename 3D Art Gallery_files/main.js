@@ -45,7 +45,7 @@ if (!Detector.webgl) {
       gal.controls = new THREE.PointerLockControls(gal.camera);
       gal.scene.add(gal.controls.getObject());
 
-      gal.pastX = gal.controls.getObject().position.x / 2;
+      gal.pastX = gal.controls.getObject().position.x;
       gal.pastZ = gal.controls.getObject().position.z;
 
       gal.canvas = document.querySelector('canvas');
