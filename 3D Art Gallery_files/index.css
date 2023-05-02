@@ -11,8 +11,8 @@ body {
   margin: 0em;
   padding: 0em;
   overflow: hidden;
-  font-family: 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial,
-    'Lucida Grande', sans-serif;
+  font-family: 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande',
+    sans-serif;
 }
 
 p,
@@ -39,7 +39,10 @@ canvas {
 }
 
 #menu {
-  width: 48em;
+  /* width: 48em; */
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  padding-top: 1.5em;
 
   position: absolute;
   top: 50%;

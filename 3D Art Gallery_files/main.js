@@ -24,7 +24,7 @@ if (!Detector.webgl) {
       gal.renderer.setClearColor(0xffffff, 1);
       document.body.appendChild(gal.renderer.domElement);
 
-      gal.userBoxGeo = new THREE.BoxGeometry(2, 1, 2);
+      gal.userBoxGeo = new THREE.BoxGeometry(2, 2, 2);
       gal.userBoxMat = new THREE.MeshBasicMaterial({
         color: 0xeeee99,
         wireframe: true,
