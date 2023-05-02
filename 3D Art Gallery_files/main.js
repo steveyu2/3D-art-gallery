@@ -24,7 +24,7 @@ if (!Detector.webgl) {
       gal.renderer.setClearColor(0xffffff, 1);
       document.body.appendChild(gal.renderer.domElement);
 
-      gal.userBoxGeo = new THREE.BoxGeometry(2, 2, 2);
+      gal.userBoxGeo = new THREE.BoxGeometry(2, 1, 2);
       gal.userBoxMat = new THREE.MeshBasicMaterial({
         color: 0xeeee99,
         wireframe: true,
@@ -45,7 +45,7 @@ if (!Detector.webgl) {
       gal.controls = new THREE.PointerLockControls(gal.camera);
       gal.scene.add(gal.controls.getObject());
 
-      gal.pastX = gal.controls.getObject().position.x;
+      gal.pastX = gal.controls.getObject().position.x / 2;
       gal.pastZ = gal.controls.getObject().position.z;
 
       gal.canvas = document.querySelector('canvas');
