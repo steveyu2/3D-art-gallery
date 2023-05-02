@@ -4,12 +4,7 @@ if (!Detector.webgl) {
 } else {
   var gal = {
     scene: new THREE.Scene(),
-    camera: new THREE.PerspectiveCamera(
-      75,
-      window.innerWidth / window.innerHeight,
-      0.1,
-      1000
-    ),
+    camera: new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000),
     renderer: new THREE.WebGLRenderer({ antialias: false }),
     raycaster: new THREE.Raycaster(),
     mouse: new THREE.Vector2(),
@@ -131,33 +126,13 @@ if (!Detector.webgl) {
         });
 
         //pointer lock state change listener
-        document.addEventListener(
-          'pointerlockchange',
-          gal.changeCallback,
-          false
-        );
-        document.addEventListener(
-          'mozpointerlockchange',
-          gal.changeCallback,
-          false
-        );
-        document.addEventListener(
-          'webkitpointerlockchange',
-          gal.changeCallback,
-          false
-        );
+        document.addEventListener('pointerlockchange', gal.changeCallback, false);
+        document.addEventListener('mozpointerlockchange', gal.changeCallback, false);
+        document.addEventListener('webkitpointerlockchange', gal.changeCallback, false);
 
         document.addEventListener('pointerlockerror', gal.errorCallback, false);
-        document.addEventListener(
-          'mozpointerlockerror',
-          gal.errorCallback,
-          false
-        );
-        document.addEventListener(
-          'webkitpointerlockerror',
-          gal.errorCallback,
-          false
-        );
+        document.addEventListener('mozpointerlockerror', gal.errorCallback, false);
+        document.addEventListener('webkitpointerlockerror', gal.errorCallback, false);
       } else {
         alert('Your browser does not support the Pointer Lock API');
       }
@@ -180,14 +155,8 @@ if (!Detector.webgl) {
         //pointer is no longer disabled
         gal.controls.enabled = false;
         //remove hidden property from menu
-        gal.menu.className = gal.menu.className.replace(
-          /(?:^|\s)hide(?!\S)/g,
-          ''
-        );
-        gal.bgMenu.className = gal.bgMenu.className.replace(
-          /(?:^|\s)hide(?!\S)/g,
-          ''
-        );
+        gal.menu.className = gal.menu.className.replace(/(?:^|\s)hide(?!\S)/g, '');
+        gal.bgMenu.className = gal.bgMenu.className.replace(/(?:^|\s)hide(?!\S)/g, '');
         document.removeEventListener('mousemove', gal.moveCallback, false);
       }
     },
@@ -198,10 +167,8 @@ if (!Detector.webgl) {
 
     moveCallback: function (event) {
       //now that pointer disabled, we get the movement in x and y pos of the mouse
-      var movementX =
-        event.movementX || event.mozMovementX || event.webkitMovementX || 0;
-      var movementY =
-        event.movementY || event.mozMovementY || event.webkitMovementY || 0;
+      var movementX = event.movementX || event.mozMovementX || event.webkitMovementX || 0;
+      var movementY = event.movementY || event.mozMovementY || event.webkitMovementY || 0;
     },
 
     toggleFullscreen: function () {
@@ -219,9 +186,7 @@ if (!Detector.webgl) {
         } else if (document.documentElement.mozRequestFullScreen) {
           document.documentElement.mozRequestFullScreen();
         } else if (document.documentElement.webkitRequestFullscreen) {
-          document.documentElement.webkitRequestFullscreen(
-            Element.ALLOW_KEYBOARD_INPUT
-          );
+          document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
         }
       } else {
         if (document.exitFullscreen) {
@@ -298,10 +263,7 @@ if (!Detector.webgl) {
 
       //Phong is for shiny surfaces
       gal.floorMaterial = new THREE.MeshPhongMaterial({ map: gal.floorText });
-      gal.floor = new THREE.Mesh(
-        new THREE.PlaneBufferGeometry(45, 45),
-        gal.floorMaterial
-      );
+      gal.floor = new THREE.Mesh(new THREE.PlaneBufferGeometry(45, 45), gal.floorMaterial);
 
       gal.floor.rotation.x = Math.PI / 2;
       gal.floor.rotation.y = Math.PI;
@@ -347,10 +309,7 @@ if (!Detector.webgl) {
       //Ceiling//
       //gal.ceilMaterial = new THREE.MeshLambertMaterial({color: 0x8DB8A7});
       gal.ceilMaterial = new THREE.MeshLambertMaterial({ color: 0xeeeeee });
-      gal.ceil = new THREE.Mesh(
-        new THREE.PlaneBufferGeometry(40, 6),
-        gal.ceilMaterial
-      );
+      gal.ceil = new THREE.Mesh(new THREE.PlaneBufferGeometry(40, 6), gal.ceilMaterial);
       gal.ceil.position.y = 6;
       gal.ceil.rotation.x = Math.PI / 2;
 
@@ -379,10 +338,7 @@ if (!Detector.webgl) {
             ratiow = artwork.width / 300;
             ratioh = artwork.height / 300;
             // plane for artwork
-            var plane = new THREE.Mesh(
-              new THREE.PlaneBufferGeometry(ratiow, ratioh),
-              img
-            ); //width, height
+            var plane = new THREE.Mesh(new THREE.PlaneBufferGeometry(ratiow, ratioh), img); //width, height
             plane.overdraw = true;
             //-1 because index is 0 - n-1 but num of paintings is n
             if (index <= Math.floor(gal.num_of_paintings / 2) - 1) {
@@ -423,16 +379,16 @@ if (!Detector.webgl) {
 
         //need to apply velocity when keys are being pressed
         if (gal.moveForward) {
-          gal.moveVelocity.z -= 20 * delta;
+          gal.moveVelocity.z -= 100 * delta;
         }
         if (gal.moveBackward) {
-          gal.moveVelocity.z += 20 * delta;
+          gal.moveVelocity.z += 100 * delta;
         }
         if (gal.moveLeft) {
-          gal.moveVelocity.x -= 20 * delta;
+          gal.moveVelocity.x -= 100 * delta;
         }
         if (gal.moveRight) {
-          gal.moveVelocity.x += 20 * delta;
+          gal.moveVelocity.x += 100 * delta;
         }
 
         gal.controls.getObject().translateX(gal.moveVelocity.x * delta);
@@ -480,9 +436,7 @@ if (!Detector.webgl) {
 
       if (gal.initialRender === true) {
         for (var i = 0; i < gal.wallGroup.children.length; i++) {
-          gal.wallGroup.children[i].BBox.setFromObject(
-            gal.wallGroup.children[i]
-          );
+          gal.wallGroup.children[i].BBox.setFromObject(gal.wallGroup.children[i]);
         }
         gal.renderer.render(gal.scene, gal.camera);
       }
